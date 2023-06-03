@@ -13,7 +13,6 @@ function createGalleryMarkup(items) {
             <img
               class="gallery__image"
               src="${preview}"
-              data-source="${original}"
               alt="${description}"
             />
           </a>
@@ -27,21 +26,7 @@ const addGalleryMarkup = createGalleryMarkup(galleryItems);
 
 gallery.innerHTML = addGalleryMarkup;
 
-gallery.addEventListener("click", onImageClick);
-
-function onImageClick(e) {
-  e.preventDefault();
-
-  if (e.target.nodeName !== "IMG") {
-    return;
-  }
-
-  const instance = new SimpleLightbox(gallery.querySelectorAll('.gallery__image'));
-  instance.open();
-
-  gallery.addEventListener("keydown", (e) => {
-    if (e.code === "Escape") {
-      instance.close();
-    }
-  });
-}
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
