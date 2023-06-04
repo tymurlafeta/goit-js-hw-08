@@ -15,9 +15,17 @@ function onFormInput(e){
 function onFormSubmit(e) {
     e.preventDefault();
 
+    if (!formData.email) {
+        alert("Заповніть всі поля форми");
+        return;
+      }
+
+    console.log(formData);
+    
     e.target.reset();
     localStorage.clear();
     formData = {};
+    
 }
 
 function saveToLs (key, value) {
